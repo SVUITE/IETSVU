@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتصل بنا — الجامعة الافتراضية</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <span class="logo-icon">🎓</span>
+      دليل الفعاليات
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="events.html">الفعاليات</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html">اتصل بنا</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <h1>📬 اتصل بنا</h1>
+    <p>نسعد بتواصلك معنا في أي وقت</p>
+  </div>
+</div>
+
+<main class="container section-pad">
+  <div class="row g-5">
+
+    <!-- Contact Form -->
+    <div class="col-lg-7">
+      <div class="contact-form-card">
+        <h3 style="color:var(--primary);font-weight:900;margin-bottom:1.5rem">أرسل لنا رسالة</h3>
+
+        <div id="form-alert" style="display:none" class="alert"></div>
+
+        <form id="contact-form" novalidate>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="c-name">الاسم الكامل <span style="color:var(--danger)">*</span></label>
+            <input type="text" class="form-control" id="c-name" placeholder="أدخل اسمك الكامل">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="c-email">البريد الإلكتروني <span style="color:var(--danger)">*</span></label>
+            <input type="email" class="form-control" id="c-email" placeholder="your@email.com">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="c-subject">الموضوع</label>
+            <select class="form-control" id="c-subject">
+              <option>اقتراح فعالية</option>
+              <option>الإبلاغ عن مشكلة</option>
+              <option>الشراكة والتعاون</option>
+              <option>استفسار عام</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="c-message">الرسالة <span style="color:var(--danger)">*</span></label>
+            <textarea class="form-control" id="c-message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary-custom w-100" style="padding:12px;font-size:1rem">
+            📨 إرسال الرسالة
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="col-lg-5">
+      <h3 style="color:var(--primary);font-weight:900;margin-bottom:1.5rem">معلومات التواصل</h3>
+
+      <div style="background:var(--bg-card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.5rem">
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="bi bi-envelope-fill"></i></div>
+          <div>
+            <div style="font-weight:700;color:var(--text);margin-bottom:2px">البريد الإلكتروني</div>
+            <a href="mailto:events@svuonline.org" style="color:var(--primary-light);font-size:.92rem">events@svuonline.org</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+          <div>
+            <div style="font-weight:700;color:var(--text);margin-bottom:2px">الهاتف</div>
+            <span style="color:var(--text-muted);font-size:.92rem">+963 11 123 4567</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <div style="font-weight:700;color:var(--text);margin-bottom:2px">العنوان</div>
+            <span style="color:var(--text-muted);font-size:.92rem">الجامعة الافتراضية السورية، دمشق، سوريا</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="bi bi-clock-fill"></i></div>
+          <div>
+            <div style="font-weight:700;color:var(--text);margin-bottom:2px">ساعات العمل</div>
+            <span style="color:var(--text-muted);font-size:.92rem">الأحد – الخميس: 9 صباحاً – 5 مساءً</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div style="background:var(--primary);border-radius:var(--radius);padding:1.5rem;color:#fff">
+        <h5 style="color:var(--accent);font-weight:700;margin-bottom:1rem">تابعنا على السوشيال</h5>
+        <div class="d-flex flex-column gap-3">
+          <a href="#" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);transition:color .2s" onmouseover="this.style.color='#f0b429'" onmouseout="this.style.color='rgba(255,255,255,.8)'">
+            <i class="bi bi-instagram fs-5"></i> <span>@svu.events</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);transition:color .2s" onmouseover="this.style.color='#f0b429'" onmouseout="this.style.color='rgba(255,255,255,.8)'">
+            <i class="bi bi-twitter-x fs-5"></i> <span>@SVU_Events</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);transition:color .2s" onmouseover="this.style.color='#f0b429'" onmouseout="this.style.color='rgba(255,255,255,.8)'">
+            <i class="bi bi-facebook fs-5"></i> <span>SVU Events Guide</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);transition:color .2s" onmouseover="this.style.color='#f0b429'" onmouseout="this.style.color='rgba(255,255,255,.8)'">
+            <i class="bi bi-youtube fs-5"></i> <span>SVU Events</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5>🎓 دليل الفعاليات</h5>
+        <p style="font-size:.9rem;opacity:.8;line-height:1.8">منصتك الشاملة لمتابعة جميع فعاليات الجامعة الافتراضية.</p>
+        <div class="footer-social mt-2">
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>روابط سريعة</h5>
+        <ul style="line-height:2.2">
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="events.html">كل الفعاليات</a></li>
+          <li><a href="about.html">عن الدليل</a></li>
+          <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>تواصل معنا</h5>
+        <ul style="line-height:2.4;font-size:.9rem">
+          <li>📧 events@svuonline.org</li>
+          <li>📞 +963 11 123 4567</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      جميع الحقوق محفوظة2026  ©  دليل فعاليات الجامعة الافتراضية
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTopBtn" title="الأعلى"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

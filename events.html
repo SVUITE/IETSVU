@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كل الفعاليات — دليل الجامعة الافتراضية</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <span class="logo-icon">🎓</span>
+      دليل الفعاليات
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link active" href="events.html">الفعاليات</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <h1> كل الفعاليات</h1>
+        <p>تصفح وابحث في جميع فعاليات الجامعة الافتراضية</p>
+      </div>
+      <button class="btn-accent d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addEventModal">
+        <i class="bi bi-plus-circle"></i>
+        إضافة فعالية
+      </button>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label fw-bold" style="color:var(--primary)">🔍 البحث</label>
+        <input type="text" id="search-input" class="form-control" placeholder="ابحث عن فعالية...">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label fw-bold" style="color:var(--primary)">🏷 التصنيف</label>
+        <select id="cat-select" class="form-select">
+          <option value="all">الكل</option>
+          <option value="thaqafa">ثقافة</option>
+          <option value="riyadha">رياضة</option>
+          <option value="musiqa">موسيقى</option>
+          <option value="aaila">عائلي</option>
+          <option value="ilm">علمي</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label fw-bold" style="color:var(--primary)">📅 من تاريخ</label>
+        <input type="date" id="date-input" class="form-control">
+      </div>
+      <div class="col-md-1">
+        <button class="btn-primary-custom w-100" onclick="resetFilters()">
+          <i class="bi bi-arrow-counterclockwise"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Quick Badges -->
+  <div class="category-badges mb-4">
+    <button class="cat-badge cat-all active" data-cat="all">🌟 الكل</button>
+    <button class="cat-badge cat-thaqafa" data-cat="thaqafa"> ثقافة</button>
+    <button class="cat-badge cat-riyadha" data-cat="riyadha"> رياضة</button>
+    <button class="cat-badge cat-musiqa" data-cat="musiqa"> موسيقى</button>
+    <button class="cat-badge cat-aaila" data-cat="aaila"> عائلي</button>
+    <button class="cat-badge cat-ilm" data-cat="ilm"> علمي</button>
+  </div>
+
+  <!-- Events Grid -->
+  <div class="row g-4" id="all-events-container"></div>
+
+  <div style="height:3rem"></div>
+</main>
+
+<!-- ========== Modal إضافة فعالية ========== -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="border-radius:var(--radius);border:1px solid var(--border)">
+      <div class="modal-header" style="background:var(--primary);border-radius:var(--radius) var(--radius) 0 0">
+        <h5 class="modal-title text-white fw-bold" id="addEventModalLabel">
+          <i class="bi bi-plus-circle me-2"></i> إضافة فعالية جديدة
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div id="modal-alert" class="alert d-none"></div>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-bold" style="color:var(--primary)">عنوان الفعالية *</label>
+            <input type="text" id="ev-title" class="form-control" placeholder="أدخل عنوان الفعالية">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold" style="color:var(--primary)">التصنيف *</label>
+            <select id="ev-category" class="form-select">
+              <option value="">اختر التصنيف</option>
+              <option value="thaqafa"> ثقافة</option>
+              <option value="riyadha"> رياضة</option>
+              <option value="musiqa"> موسيقى</option>
+              <option value="aaila"> عائلي</option>
+              <option value="ilm"> علمي</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold" style="color:var(--primary)">التاريخ *</label>
+            <input type="date" id="ev-date" class="form-control">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold" style="color:var(--primary)">المكان *</label>
+            <input type="text" id="ev-location" class="form-control" placeholder="أدخل مكان الفعالية">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold" style="color:var(--primary)">الوصف *</label>
+            <textarea id="ev-description" class="form-control" rows="3" placeholder="أدخل وصفاً للفعالية"></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold" style="color:var(--primary)">رابط الصورة</label>
+            <input type="url" id="ev-image" class="form-control" placeholder="https://...">
+            <div class="form-text">اختياري — إذا تركته فارغاً ستُستخدم صورة افتراضية</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top:1px solid var(--border)">
+        <button type="button" class="btn-outline-custom" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn-primary-custom" onclick="submitNewEvent()">
+          <i class="bi bi-check-circle me-1"></i> حفظ الفعالية
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5>🎓 دليل الفعاليات</h5>
+        <p style="font-size:.9rem;opacity:.8;line-height:1.8">منصتك الشاملة لمتابعة جميع فعاليات الجامعة الافتراضية.</p>
+        <div class="footer-social mt-2">
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>روابط سريعة</h5>
+        <ul style="line-height:2.2">
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="events.html">كل الفعاليات</a></li>
+          <li><a href="about.html">عن الدليل</a></li>
+          <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>تواصل معنا</h5>
+        <ul style="line-height:2.4;font-size:.9rem">
+          <li>📧 events@svuonline.org</li>
+          <li>📞 +963 11 123 4567</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      جميع الحقوق محفوظة2026  ©  دليل فعاليات الجامعة الافتراضية
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTopBtn" title="الأعلى"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

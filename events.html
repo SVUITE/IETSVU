@@ -6,7 +6,7 @@
   <title>كل الفعاليات — دليل الجامعة الافتراضية</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
@@ -36,7 +36,7 @@
   <div class="container">
     <div class="d-flex align-items-center justify-content-between">
       <div>
-        <h1> كل الفعاليات</h1>
+        <h1>كل الفعاليات</h1>
         <p>تصفح وابحث في جميع فعاليات الجامعة الافتراضية</p>
       </div>
       <button class="btn-accent d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addEventModal">
@@ -63,7 +63,6 @@
           <option value="thaqafa">ثقافة</option>
           <option value="riyadha">رياضة</option>
           <option value="musiqa">موسيقى</option>
-          <option value="aaila">عائلي</option>
           <option value="ilm">علمي</option>
         </select>
       </div>
@@ -82,11 +81,11 @@
   <!-- Category Quick Badges -->
   <div class="category-badges mb-4">
     <button class="cat-badge cat-all active" data-cat="all">🌟 الكل</button>
-    <button class="cat-badge cat-thaqafa" data-cat="thaqafa"> ثقافة</button>
-    <button class="cat-badge cat-riyadha" data-cat="riyadha"> رياضة</button>
-    <button class="cat-badge cat-musiqa" data-cat="musiqa"> موسيقى</button>
-    <button class="cat-badge cat-aaila" data-cat="aaila"> عائلي</button>
-    <button class="cat-badge cat-ilm" data-cat="ilm"> علمي</button>
+    <button class="cat-badge cat-thaqafa" data-cat="thaqafa">ثقافة</button>
+    <button class="cat-badge cat-riyadha" data-cat="riyadha">رياضة</button>
+    <button class="cat-badge cat-musiqa" data-cat="musiqa">موسيقى</button>
+    <button class="cat-badge cat-aaila" data-cat="aaila">عائلي</button>
+    <button class="cat-badge cat-ilm" data-cat="ilm">علمي</button>
   </div>
 
   <!-- Events Grid -->
@@ -99,12 +98,16 @@
 <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content" style="border-radius:var(--radius);border:1px solid var(--border)">
+
+      <!-- Header -->
       <div class="modal-header" style="background:var(--primary);border-radius:var(--radius) var(--radius) 0 0">
         <h5 class="modal-title text-white fw-bold" id="addEventModalLabel">
           <i class="bi bi-plus-circle me-2"></i> إضافة فعالية جديدة
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
+
+      <!-- Body -->
       <div class="modal-body p-4">
         <div id="modal-alert" class="alert d-none"></div>
         <div class="row g-3">
@@ -116,11 +119,11 @@
             <label class="form-label fw-bold" style="color:var(--primary)">التصنيف *</label>
             <select id="ev-category" class="form-select">
               <option value="">اختر التصنيف</option>
-              <option value="thaqafa"> ثقافة</option>
-              <option value="riyadha"> رياضة</option>
-              <option value="musiqa"> موسيقى</option>
-              <option value="aaila"> عائلي</option>
-              <option value="ilm"> علمي</option>
+              <option value="thaqafa">ثقافة</option>
+              <option value="riyadha">رياضة</option>
+              <option value="musiqa">موسيقى</option>
+              <option value="aaila">عائلي</option>
+              <option value="ilm">علمي</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -142,11 +145,28 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer" style="border-top:1px solid var(--border)">
-        <button type="button" class="btn-outline-custom" data-bs-dismiss="modal">إلغاء</button>
-        <button type="button" class="btn-primary-custom" onclick="submitNewEvent()">
-          <i class="bi bi-check-circle me-1"></i> حفظ الفعالية
+
+      <!-- Footer — الأزرار جنب بعض + زر مسح الكل -->
+      <div class="modal-footer" style="border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+
+        <!-- زر مسح الكل على اليسار -->
+        <button
+          type="button"
+          onclick="clearAllEvents()"
+          style="background:transparent;border:1.5px solid #dc3545;color:#dc3545;border-radius:var(--radius);padding:9px 18px;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s ease;"
+          onmouseover="this.style.background='#dc3545';this.style.color='#fff';"
+          onmouseout="this.style.background='transparent';this.style.color='#dc3545';">
+          <i class="bi bi-trash3"></i> مسح الكل
         </button>
+
+        <!-- إلغاء + حفظ على اليمين جنب بعض -->
+        <div style="display:flex;gap:10px;align-items:center;">
+          <button type="button" class="btn-outline-custom" data-bs-dismiss="modal">إلغاء</button>
+          <button type="button" class="btn-primary-custom" onclick="submitNewEvent()">
+            <i class="bi bi-check-circle me-1"></i> حفظ الفعالية
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -184,7 +204,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      جميع الحقوق محفوظة2026  ©  دليل فعاليات الجامعة الافتراضية
+      جميع الحقوق محفوظة 2026 © دليل فعاليات الجامعة الافتراضية
     </div>
   </div>
 </footer>
@@ -192,6 +212,19 @@
 <button id="scrollTopBtn" title="الأعلى"><i class="bi bi-arrow-up"></i></button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+  /* ===== مسح جميع الفعاليات من localStorage ===== */
+  function clearAllEvents() {
+    if (confirm('هل أنت متأكد من حذف جميع الفعاليات؟\nلا يمكن التراجع عن هذه العملية!')) {
+      localStorage.removeItem('eventsData');
+      const modal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+      if (modal) modal.hide();
+      location.reload();
+    }
+  }
+</script>
+
 </body>
 </html>

@@ -1,8 +1,4 @@
-/* =============================================
-   دليل فعاليات الجامعة الافتراضية - main.js
-   ============================================= */
 
-/* ---------- إعدادات التصنيفات ---------- */
 const categoryConfig = {
   thaqafa: { label: "ثقافة",  color: "#f0b429", textColor: "#7a4200" },
   riyadha: { label: "رياضة",  color: "#1db97b", textColor: "#0b5a36" },
@@ -10,11 +6,7 @@ const categoryConfig = {
   aaila:   { label: "عائلي",  color: "#4a6ee0", textColor: "#1a2f8a" },
   ilm:     { label: "علمي",   color: "#7c3ccc", textColor: "#3a1068" }
 };
-
-/* ---------- الصورة الافتراضية ---------- */
 const DEFAULT_IMAGE = "https://placehold.co/600x400/0d2e6e/ffffff?text=فعالية";
-
-/* ---------- إدارة البيانات عبر localStorage ---------- */
 function getAllEvents() {
   const stored = localStorage.getItem('eventsData');
   return stored ? JSON.parse(stored) : [];
@@ -30,14 +22,13 @@ function getNextId() {
   return Math.max(...events.map(e => e.id)) + 1;
 }
 
-/* ---------- تنسيق التاريخ ---------- */
+
 function formatDateLabel(dateStr) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
   return date.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-/* ---------- وظيفة إنشاء HTML للكارت ---------- */
 function createEventCard(ev, showDetails = true) {
   const cat = categoryConfig[ev.category] || { label: ev.category, color: '#888', textColor: '#333' };
   return `
@@ -63,7 +54,6 @@ function createEventCard(ev, showDetails = true) {
   `;
 }
 
-/* ---------- سلايدر الصفحة الرئيسية (ديناميكي) ---------- */
 function initSlider() {
   const track         = document.getElementById('slider-track');
   const dotsContainer = document.getElementById('slider-dots');
@@ -84,7 +74,6 @@ function initSlider() {
     return;
   }
 
-  /* بناء الشرائح من أحدث 5 فعاليات */
   track.innerHTML = events.slice(0, 5).map(ev => `
     <div class="slide">
       <img src="${ev.image || DEFAULT_IMAGE}" alt="${ev.title}"
@@ -96,7 +85,6 @@ function initSlider() {
     </div>
   `).join('');
 
-  /* بناء النقاط */
   const slides = track.querySelectorAll('.slide');
   dotsContainer.innerHTML = [...slides].map((_, i) =>
     `<button class="slider-btn ${i === 0 ? 'active' : ''}"></button>`
@@ -119,7 +107,6 @@ function initSlider() {
   goTo(0);
 }
 
-/* ---------- تحميل الفعاليات في الصفحة الرئيسية ---------- */
 function loadHomeEvents() {
   const container = document.getElementById('latest-events');
   if (!container) return;
@@ -134,13 +121,11 @@ function loadHomeEvents() {
   container.innerHTML = events.slice(0, 3).map(ev => createEventCard(ev)).join('');
 }
 
-/* ---------- تحميل الحدث المميز (فعالية اليوم فقط) ---------- */
 function loadFeaturedEvent() {
   const container = document.getElementById('featured-event');
   if (!container) return;
   const events = getAllEvents();
 
-  /* ✅ الإصلاح: تصفية الفعاليات حسب تاريخ اليوم فقط */
   const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD"
   const ev = events.find(e => e.date === today);
 
@@ -181,7 +166,6 @@ function loadFeaturedEvent() {
   `;
 }
 
-/* ---------- تحميل جميع الفعاليات ---------- */
 function loadAllEvents(filter = 'all', search = '', dateFilter = '') {
   const container = document.getElementById('all-events-container');
   if (!container) return;
@@ -201,7 +185,6 @@ function loadAllEvents(filter = 'all', search = '', dateFilter = '') {
   container.innerHTML = events.map(ev => createEventCard(ev)).join('');
 }
 
-/* ---------- إضافة فعالية جديدة من الـ Modal ---------- */
 function submitNewEvent() {
   const title       = document.getElementById('ev-title')?.value.trim();
   const category    = document.getElementById('ev-category')?.value;
@@ -238,25 +221,24 @@ function submitNewEvent() {
   events.push(newEvent);
   saveEvents(events);
 
-  /* إغلاق الـ Modal */
+
   const modal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
   modal.hide();
 
-  /* تنظيف الحقول */
+ 
   ['ev-title','ev-category','ev-date','ev-location','ev-description','ev-image'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
   alertEl.classList.add('d-none');
 
-  /* تحديث كل العناصر */
+
   loadAllEvents();
   loadHomeEvents();
   loadFeaturedEvent();
   initSlider();
 }
 
-/* ---------- إعادة ضبط الفلاتر ---------- */
 function resetFilters() {
   const s = document.getElementById('search-input');
   const c = document.getElementById('cat-select');
@@ -267,7 +249,6 @@ function resetFilters() {
   loadAllEvents();
 }
 
-/* ---------- فلترة الفعاليات ---------- */
 function initFilters() {
   document.querySelectorAll('.cat-badge[data-cat]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -302,7 +283,6 @@ function initFilters() {
   });
 }
 
-/* ---------- تفاصيل الفعالية ---------- */
 function loadEventDetail() {
   const container = document.getElementById('event-detail');
   if (!container) return;
@@ -361,7 +341,7 @@ function shareEvent(title) {
   }
 }
 
-/* ---------- نموذج التواصل ---------- */
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -392,7 +372,7 @@ function showAlert(el, type, msg) {
   setTimeout(() => { el.style.display = 'none'; }, 5000);
 }
 
-/* ---------- Scroll to top ---------- */
+
 function initScrollTop() {
   const btn = document.getElementById('scrollTopBtn');
   if (!btn) return;
@@ -400,7 +380,6 @@ function initScrollTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ---------- تشغيل كل شيء عند التحميل ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   initSlider();
   loadHomeEvents();
